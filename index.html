@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIPS MANIOC+ - Chips de manioc artisanales du Bénin</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #5B3A1A;
+            --primary-gold: #F3C623;
+            --bg-cream: #FDF7E4;
+            --white: #ffffff;
+            --text-light: rgba(91, 58, 26, 0.7);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary-brown);
+            line-height: 1.5;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-brown));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .logo-icon span {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            color: var(--primary-brown);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+        }
+
+        .nav-desktop {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-desktop { display: flex; }
+        }
+
+        .nav-link {
+            color: var(--primary-brown);
+            text-decoration: none;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 1024px) {
+            .btn-primary { display: flex; }
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-brown);
+            color: white;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--primary-brown);
+            padding: 0.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        @media (min-width: 1024px) {
+            .menu-btn { display: none; }
+        }
+
+        .mobile-menu {
+            background: white;
+            border-top: 1px solid rgba(243, 198, 35, 0.2);
+            padding: 1rem 0;
+            display: none;
+        }
+
+        .mobile-menu.open { display: block; }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--primary-brown);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            color: var(--primary-gold);
+            background-color: var(--bg-cream);
+        }
+
+        .mobile-btn {
+            display: block;
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        main {
+            padding-top: 5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #FDF7E4 0%, #F3C623 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(circle, #5B3A1A 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .hero-title { font-size: 4rem; }
+        }
+
+        .hero-highlight {
+            color: var(--primary-gold);
+            position: relative;
+        }
+
+        .hero-underline {
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons { flex-direction: row; }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-dark {
+            background-color: var(--primary-brown);
+            color: white;
+        }
+
+        .btn-light {
+            background-color: white;
+            color: var(--primary-brown);
+            border: 2px solid var(--primary-brown);
+        }
+
+        .btn:hover { transform: scale(1.05); }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(91, 58, 26, 0.4), transparent);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+        }
+
+        .floating-card.top {
+            top: -1.5rem;
+            right: -1.5rem;
+        }
+
+        .floating-card.bottom {
+            bottom: -1.5rem;
+            left: -1.5rem;
+        }
+
+        .floating-card .number {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-title { font-size: 3rem; }
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--bg-cream), white);
+        }
+
+        .story-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .story-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .story-image-wrapper {
+            position: relative;
+        }
+
+        .story-image {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .story-stats {
+            position: absolute;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .story-stats.top {
+            top: -1.5rem;
+            left: -1.5rem;
+        }
+
+        .story-stats.bottom {
+            bottom: -1.5rem;
+            right: -1.5rem;
+        }
+
+        .stat-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon i {
+            color: var(--primary-brown);
+            font-size: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .story-text {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .value-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .value-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .quote-box {
+            background-color: var(--primary-brown);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quote-text {
+            color: var(--primary-gold);
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-author {
+            color: white;
+        }
+
+        /* Flavors Section */
+        .flavors-section {
+            padding: 5rem 0;
+            background-color: var(--bg-cream);
+        }
+
+        .flavors-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .flavors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .flavors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .flavor-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .flavor-image {
+            height: 16rem;
+            overflow: hidden;
+        }
+
+        .flavor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .flavor-card:hover .flavor-image img {
+            transform: scale(1.1);
+        }
+
+        .flavor-content {
+            padding: 1.5rem;
+        }
+
+        .flavor-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .flavor-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .flavor-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+
+        .flavor-stripe {
+            height: 4px;
+            width: 100%;
+        }
+
+        .btn-center {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Packs Section */
+        .packs-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .packs-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .packs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .packs-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .pack-card {
+            background-color: var(--bg-cream);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pack-card.popular {
+            border-color: var(--primary-gold);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -0.75rem;
+            right: -0.75rem;
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pack-icon-inner {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .pack-icon-inner.carton {
+            background-color: var(--primary-gold);
+        }
+        .pack-icon-inner.bouteille {
+            background-color: var(--primary-brown);
+        }
+
+        .pack-icon-inner i {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .pack-format {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .pack-format span {
+            background: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .pack-title {
+            font-size: 1.875rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .pack-price {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pack-price-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+
+        .pack-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pack-feature i {
+            color: var(--primary-gold);
+        }
+
+        .pack-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
+        }
+
+        .pack-btn.popular {
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+        }
+        .pack-btn.default {
+            background-color: var(--primary-brown);
+            color: white;
+        }
+
+        .info-box {
+            margin-top: 4rem;
+            background: linear-gradient(to right, var(--primary-gold), var(--primary-brown));
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .info-btn {
+            background: white;
+            color: var(--primary-brown);
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* Order Form */
+        .order-section {
+            padding: 5rem 0;
+        }
+
+        .order-form-wrapper {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: linear-gradient(135deg, var(--bg-cream), white);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        @media (min-width: 768px) {
+            .form-card { padding: 3rem; }
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 2px solid rgba(243, 198, 35, 0.3);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--primary-brown);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-brown);
+        }
+
+        .spinner {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .success-message {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .success-icon {
+            width: 6rem;
+            height: 6rem;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-icon i {
+            color: white;
+            font-size: 3rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-brown);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary-gold), white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-icon span {
+            color: var(--primary-brown);
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .footer-description {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-link a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .footer-link a:hover {
+            color: var(--primary-gold);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .copyright {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.875rem;
+        }
+
+        .heart {
+            color: var(--primary-gold);
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .university-badge {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .badge-inner {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+        }
+
+        /* Page visibility */
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showPage('home'); return false;">
+                    <div class="logo-icon"><span>CM</span></div>
+                    <div class="logo-text">
+                        <h1>CHIPS MANIOC+</h1>
+                        <p>Saveurs uniques</p>
+                    </div>
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="#" class="nav-link active" onclick="showPage('home'); return false;">Accueil</a>
+                    <a href="#" class="nav-link" onclick="showPage('saveurs'); return false;">Saveurs</a>
+                    <a href="#" class="nav-link" onclick="showPage('packs'); return false;">Packs</a>
+                    <a href="#" class="nav-link" onclick="showPage('histoire'); return false;">Histoire</a>
+                    <a href="#" class="nav-link" onclick="showPage('commander'); return false;">Commander</a>
+                </nav>
+
+                <a href="#" class="btn-primary" onclick="showPage('commander'); return false;">
+                    <i class="fas fa-shopping-cart"></i> Commander
+                </a>
+
+                <button class="menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <nav class="mobile-nav">
+                    <a href="#" class="mobile-nav-link active" onclick="showPage('home'); return false;">Accueil</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('saveurs'); return false;">Saveurs</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('packs'); return false;">Packs</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('histoire'); return false;">Histoire</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('commander'); return false;">Commander</a>
+                    <a href="#" class="mobile-btn" onclick="showPage('commander'); return false;">
+                        <i class="fas fa-shopping-cart"></i> Commander maintenant
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGE ACCUEIL -->
+        <div id="page-home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-pattern"></div>
+                <div class="container hero-content">
+                    <div>
+                        <div class="hero-badge">
+                            <i class="fas fa-sparkles"></i>
+                            <span>100% Naturel & Artisanal</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Découvrez les chips de manioc revisitées, 
+                            <span class="hero-highlight">
+                                100% naturelles
+                                <svg class="hero-underline" viewBox="0 0 200 8">
+                                    <path d="M1 5C50 1 150 1 199 5" stroke="#5B3A1A" stroke-width="3"/>
+                                </svg>
+                            </span>
+                        </h1>
+                        <p class="hero-description">
+                            Saveurs originales pour éveiller vos papilles. Une expérience gustative unique inspirée de l'Afrique.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-dark" onclick="showPage('saveurs'); return false;">
+                                Découvrir les saveurs <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#" class="btn btn-light" onclick="showPage('commander'); return false;">
+                                Commander maintenant
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image">
+                            <img src="https://images.unsplash.com/photo-1768475011729-80f491cd1c86?w=800" alt="Chips de manioc">
+                            <div class="hero-overlay"></div>
+                        </div>
+                        <div class="floating-card top">
+                            <div class="number">5</div>
+                            <div class="label">Saveurs</div>
+                        </div>
+                        <div class="floating-card bottom">
+                            <div class="number">100%</div>
+                            <div class="label">Naturel</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Story Section (extrait) -->
+            <section class="story-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Notre Histoire</span>
+                        <h2 class="section-title">Une passion née à Cotonou</h2>
+                        <p class="section-subtitle">Découvrez l'histoire de CHIPS MANIOC+</p>
+                    </div>
+                    <div class="story-grid">
+                        <div class="story-image-wrapper">
+                            <div class="story-image">
+                                <img src="https://images.unsplash.com/photo-1665495005618-6f55e5f77a07?w=800" alt="Fondateur">
+                            </div>
+                            <div class="story-stats bottom">
+                                <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                                <div><div class="stat-number">100%</div><div>Passion</div></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="story-text">Tout a commencé dans une petite cuisine de Cotonou, au Bénin... <a href="#" onclick="showPage('histoire'); return false;">Lire la suite</a></p>
+                            <a href="#" class="btn btn-dark" onclick="showPage('histoire'); return false;">Découvrir notre histoire</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flavors Section (extrait) -->
+            <section class="flavors-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Nos Saveurs</span>
+                        <h2 class="section-title">5 Saveurs Exceptionnelles</h2>
+                    </div>
+                    <div class="flavors-grid">
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1725001902550-9b84d6a119d1?w=400" alt="Chocolat"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Chocolat</h3>
+                                <p class="flavor-description">Un mélange gourmand de manioc croquant et de chocolat intense.</p>
+                            </div>
+                        </div>
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1747479465236-35452c184426?w=400" alt="Fraise"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Fraise</h3>
+                                <p class="flavor-description">La douceur sucrée de la fraise rencontre le croquant du manioc.</p>
+                            </div>
+                        </div>
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1754493931401-427b1e82f9db?w=400" alt="Menthe"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Menthe</h3>
+                                <p class="flavor-description">Une fraîcheur vivifiante à chaque bouchée.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-center">
+                        <a href="#" class="btn btn-dark" onclick="showPage('saveurs'); return false;">Voir toutes les saveurs</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Packs Section (extrait) -->
+            <section class="packs-section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Nos Packs</span>
+                        <h2 class="section-title">Choisissez Votre Pack</h2>
+                    </div>
+                    <div class="packs-grid">
+                        <div class="pack-card">
+                            <div class="pack-icon-inner carton"><i class="fas fa-box"></i></div>
+                            <div class="pack-format"><span>Carton</span></div>
+                            <h3 class="pack-title">Pack 12</h3>
+                            <div class="pack-price"><span class="pack-price-number">3 000</span> FCFA</div>
+                            <a href="#" class="pack-btn default" onclick="selectPack(1,'Carton',12,3000); showPage('commander'); return false;">Choisir</a>
+                        </div>
+                        <div class="pack-card popular">
+                            <div class="popular-badge">Populaire</div>
+                            <div class="pack-icon-inner carton"><i class="fas fa-box"></i></div>
+                            <div class="pack-format"><span>Carton</span></div>
+                            <h3 class="pack-title">Pack 20</h3>
+                            <div class="pack-price"><span class="pack-price-number">4 500</span> FCFA</div>
+                            <a href="#" class="pack-btn popular" onclick="selectPack(2,'Carton',20,4500); showPage('commander'); return false;">Choisir</a>
+                        </div>
+                    </div>
+                    <div class="btn-center">
+                        <a href="#" class="btn btn-dark" onclick="showPage('packs'); return false;">Voir tous les packs</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE SAVEURS -->
+        <div id="page-saveurs" class="page">
+            <section class="flavors-section" style="padding-top: 2rem;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Nos Saveurs</span>
+                        <h2 class="section-title">5 Saveurs Exceptionnelles</h2>
+                        <p class="section-subtitle">Chaque saveur est une invitation au voyage gustatif</p>
+                    </div>
+                    <div class="flavors-grid">
+                        <!-- Chocolat -->
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1725001902550-9b84d6a119d1?w=800" alt="Chocolat"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Chocolat</h3>
+                                <p class="flavor-description">Un mélange gourmand de manioc croquant et de chocolat intense pour une expérience unique. Nos chips sont enrobées d'un chocolat noir 70% de cacao pour les puristes.</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="background: var(--primary-gold); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">Nouveauté</span>
+                                </div>
+                            </div>
+                            <div class="flavor-stripe" style="background: #5B3A1A;"></div>
+                        </div>
+                        <!-- Fraise -->
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1747479465236-35452c184426?w=800" alt="Fraise"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Fraise</h3>
+                                <p class="flavor-description">La douceur sucrée de la fraise rencontre le croquant authentique du manioc. Une saveur fruitée qui plaira à toute la famille.</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="background: var(--primary-gold); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">Fruitée</span>
+                                </div>
+                            </div>
+                            <div class="flavor-stripe" style="background: #DC2626;"></div>
+                        </div>
+                        <!-- Menthe -->
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1754493931401-427b1e82f9db?w=800" alt="Menthe"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Menthe</h3>
+                                <p class="flavor-description">Une fraîcheur vivifiante qui réveille vos sens à chaque bouchée. Idéal pour une pause rafraîchissante.</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="background: var(--primary-gold); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">Fraîcheur</span>
+                                </div>
+                            </div>
+                            <div class="flavor-stripe" style="background: #059669;"></div>
+                        </div>
+                        <!-- Nature -->
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1604565011092-c0fa4416f80f?w=800" alt="Nature"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Nature</h3>
+                                <p class="flavor-description">Le goût authentique et pur du manioc, simplement délicieux au naturel. Un classique intemporel.</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="background: var(--primary-gold); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">Original</span>
+                                </div>
+                            </div>
+                            <div class="flavor-stripe" style="background: #D97706;"></div>
+                        </div>
+                        <!-- Chili -->
+                        <div class="flavor-card">
+                            <div class="flavor-image"><img src="https://images.unsplash.com/photo-1622993361024-ae1c39cda16c?w=800" alt="Chili"></div>
+                            <div class="flavor-content">
+                                <h3 class="flavor-title">Chili</h3>
+                                <p class="flavor-description">Pour les amateurs de sensations fortes, une touche épicée irrésistible qui réveille les papilles.</p>
+                                <div style="margin-top: 1rem;">
+                                    <span style="background: var(--primary-gold); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">Épicé</span>
+                                </div>
+                            </div>
+                            <div class="flavor-stripe" style="background: #DC2626;"></div>
+                        </div>
+                    </div>
+                    <div class="btn-center">
+                        <a href="#" class="btn btn-dark" onclick="showPage('packs'); return false;">Voir les packs disponibles</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE PACKS -->
+        <div id="page-packs" class="page">
+            <section class="packs-section" style="padding-top: 2rem;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Nos Packs</span>
+                        <h2 class="section-title">Choisissez Votre Pack</h2>
+                        <p class="section-subtitle">Disponibles en carton ou bouteille</p>
+                    </div>
+                    <div class="packs-grid">
+                        <!-- Pack 1 -->
+                        <div class="pack-card" id="pack-1">
+                            <div class="pack-icon-inner carton"><i class="fas fa-box"></i></div>
+                            <div class="pack-format"><span>Format Carton</span></div>
+                            <h3 class="pack-title">Pack de 12</h3>
+                            <p style="text-align: center; color: var(--text-light);">12 unités</p>
+                            <div class="pack-price">
+                                <span class="pack-price-number">3 000</span>
+                                <span class="pack-price-currency">FCFA</span>
+                            </div>
+                            <div class="pack-features">
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Toutes saveurs</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Livraison gratuite</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Fraîcheur garantie</span></div>
+                            </div>
+                            <a href="#" class="pack-btn default" onclick="selectPack(1, 'Carton', 12, 3000); showPage('commander'); return false;">
+                                <i class="fas fa-shopping-cart"></i> Commander
+                            </a>
+                        </div>
+                        <!-- Pack 2 -->
+                        <div class="pack-card popular" id="pack-2">
+                            <div class="popular-badge">Populaire</div>
+                            <div class="pack-icon-inner carton"><i class="fas fa-box"></i></div>
+                            <div class="pack-format"><span>Format Carton</span></div>
+                            <h3 class="pack-title">Pack de 20</h3>
+                            <p style="text-align: center; color: var(--text-light);">20 unités</p>
+                            <div class="pack-price">
+                                <span class="pack-price-number">4 500</span>
+                                <span class="pack-price-currency">FCFA</span>
+                            </div>
+                            <div class="pack-features">
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Toutes saveurs</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Livraison gratuite</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Fraîcheur garantie</span></div>
+                            </div>
+                            <a href="#" class="pack-btn popular" onclick="selectPack(2, 'Carton', 20, 4500); showPage('commander'); return false;">
+                                <i class="fas fa-shopping-cart"></i> Commander
+                            </a>
+                        </div>
+                        <!-- Pack 3 -->
+                        <div class="pack-card" id="pack-3">
+                            <div class="pack-icon-inner bouteille"><i class="fas fa-wine-bottle"></i></div>
+                            <div class="pack-format"><span>Format Bouteille</span></div>
+                            <h3 class="pack-title">Pack de 12</h3>
+                            <p style="text-align: center; color: var(--text-light);">12 unités</p>
+                            <div class="pack-price">
+                                <span class="pack-price-number">3 500</span>
+                                <span class="pack-price-currency">FCFA</span>
+                            </div>
+                            <div class="pack-features">
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Toutes saveurs</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Livraison gratuite</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Fraîcheur garantie</span></div>
+                            </div>
+                            <a href="#" class="pack-btn default" onclick="selectPack(3, 'Bouteille', 12, 3500); showPage('commander'); return false;">
+                                <i class="fas fa-shopping-cart"></i> Commander
+                            </a>
+                        </div>
+                        <!-- Pack 4 -->
+                        <div class="pack-card popular" id="pack-4">
+                            <div class="popular-badge">Populaire</div>
+                            <div class="pack-icon-inner bouteille"><i class="fas fa-wine-bottle"></i></div>
+                            <div class="pack-format"><span>Format Bouteille</span></div>
+                            <h3 class="pack-title">Pack de 20</h3>
+                            <p style="text-align: center; color: var(--text-light);">20 unités</p>
+                            <div class="pack-price">
+                                <span class="pack-price-number">5 000</span>
+                                <span class="pack-price-currency">FCFA</span>
+                            </div>
+                            <div class="pack-features">
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Toutes saveurs</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Livraison gratuite</span></div>
+                                <div class="pack-feature"><i class="fas fa-check"></i> <span>Fraîcheur garantie</span></div>
+                            </div>
+                            <a href="#" class="pack-btn popular" onclick="selectPack(4, 'Bouteille', 20, 5000); showPage('commander'); return false;">
+                                <i class="fas fa-shopping-cart"></i> Commander
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Offre Spéciale !</h3>
+                        <p class="info-description">Livraison gratuite pour toute commande. Paiement sécurisé.</p>
+                        <a href="#" class="info-btn" onclick="showPage('commander'); return false;">Commander maintenant</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE HISTOIRE -->
+        <div id="page-histoire" class="page">
+            <section class="story-section" style="padding-top: 2rem;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Notre Histoire</span>
+                        <h2 class="section-title">Une passion née dans un foyer béninois</h2>
+                    </div>
+                    <div class="story-grid">
+                        <div class="story-image-wrapper">
+                            <div class="story-image">
+                                <img src="https://images.unsplash.com/photo-1665495005618-6f55e5f77a07?w=800" alt="Fondateur">
+                            </div>
+                            <div class="story-stats bottom">
+                                <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                                <div><div class="stat-number">100%</div><div class="stat-label">Passion</div></div>
+                            </div>
+                            <div class="story-stats top" style="background: var(--primary-brown); color: white;">
+                                <div class="stat-icon"><i class="fas fa-award"></i></div>
+                                <div><div class="stat-number text-white">5 ans</div><div class="stat-label text-white-70">D'excellence</div></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="story-text">
+                                Tout a commencé dans une petite cuisine de Cotonou, au Bénin, où notre fondateur a redécouvert le manioc - cet aliment ancestral qui a nourri des générations d'Africains. Inspiré par les saveurs de son enfance et animé par une vision moderne, il a décidé de transformer cette humble racine en un produit d'exception.
+                            </p>
+                            <p class="story-text">
+                                Chaque chips est le fruit d'un savoir-faire artisanal transmis de génération en génération. Nous sélectionnons rigoureusement nos maniocs auprès de producteurs locaux, garantissant ainsi une qualité irréprochable et un soutien à l'économie locale.
+                            </p>
+                            <p class="story-text">
+                                Notre mission est simple : faire découvrir au monde entier le potentiel extraordinaire du manioc à travers des saveurs innovantes qui respectent nos racines africaines. CHIPS MANIOC+ n'est pas qu'un produit, c'est une célébration de notre héritage et un pont vers l'avenir.
+                            </p>
+                            <div class="values-grid">
+                                <div class="value-card">
+                                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                                    <h4>Passion</h4>
+                                    <p style="font-size: 0.875rem;">Artisanal</p>
+                                </div>
+                                <div class="value-card">
+                                    <div class="value-icon"><i class="fas fa-award"></i></div>
+                                    <h4>Qualité</h4>
+                                    <p style="font-size: 0.875rem;">Premium</p>
+                                </div>
+                                <div class="value-card">
+                                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                                    <h4>Local</h4>
+                                    <p style="font-size: 0.875rem;">Communauté</p>
+                                </div>
+                            </div>
+                            <div class="quote-box">
+                                <p class="quote-text">"Le manioc est notre héritage, l'innovation est notre avenir."</p>
+                                <p class="quote-author">- Le fondateur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE COMMANDER -->
+        <div id="page-commander" class="page">
+            <section class="order-section" style="padding-top: 2rem;">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">Commande</span>
+                        <h2 class="section-title">Passez Votre Commande</h2>
+                        <p class="section-subtitle">Remplissez le formulaire ci-dessous</p>
+                    </div>
+                    <div class="order-form-wrapper">
+                        <div class="form-card">
+                            <div id="order-success" style="display: none;" class="success-message">
+                                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                                <h3 class="success-title">Commande Enregistrée !</h3>
+                                <p>Merci pour votre confiance. Nous vous contacterons très bientôt.</p>
+                            </div>
+                            <form id="order-form" onsubmit="submitOrder(event)">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label">Nom *</label>
+                                        <input type="text" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Prénom *</label>
+                                        <input type="text" class="form-input" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email *</label>
+                                    <input type="email" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Téléphone *</label>
+                                    <input type="tel" class="form-input" required placeholder="+229 XX XX XX XX">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Pack *</label>
+                                    <select class="form-select" id="pack-select" required>
+                                        <option value="">Choisir un pack</option>
+                                        <option value="Carton - 12 unités">Carton 12 (3000 FCFA)</option>
+                                        <option value="Carton - 20 unités">Carton 20 (4500 FCFA)</option>
+                                        <option value="Bouteille - 12 unités">Bouteille 12 (3500 FCFA)</option>
+                                        <option value="Bouteille - 20 unités">Bouteille 20 (5000 FCFA)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Quantité</label>
+                                    <input type="number" class="form-input" value="1" min="1" required>
+                                </div>
+                                <button type="submit" class="form-submit" id="submit-btn">
+                                    <span id="btn-text">Envoyer la commande</span>
+                                    <i class="fas fa-paper-plane" id="btn-icon"></i>
+                                    <span id="btn-spinner" style="display: none;" class="spinner"></span>
+                                </button>
+                                <p class="form-required">* Champs obligatoires</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon"><span>CM</span></div>
+                        <div>
+                            <h3>CHIPS MANIOC+</h3>
+                            <p style="color: var(--primary-gold);">Saveurs uniques</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Des chips de manioc artisanales 100% naturelles, élaborées avec passion.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul style="list-style: none;">
+                        <li class="contact-item"><i class="fas fa-map-marker-alt"></i> Cotonou, Bénin</li>
+                        <li class="contact-item"><i class="fas fa-phone"></i> +229 XX XX XX XX</li>
+                        <li class="contact-item"><i class="fas fa-envelope"></i> contact@chipsmanioc.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" onclick="showPage('saveurs'); return false;">Saveurs</a></li>
+                        <li class="footer-link"><a href="#" onclick="showPage('packs'); return false;">Packs</a></li>
+                        <li class="footer-link"><a href="#" onclick="showPage('histoire'); return false;">Histoire</a></li>
+                        <li class="footer-link"><a href="#" onclick="showPage('commander'); return false;">Commander</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <div class="footer-bottom">
+                    <p class="copyright">© 2024 CHIPS MANIOC+</p>
+                    <p class="copyright">Réalisé avec <span class="heart"><i class="fas fa-heart"></i></span></p>
+                </div>
+            </div>
+            <div class="university-badge">
+                <div class="badge-inner">
+                    <p class="badge-title">Projet académique - UATM GASA Formation</p>
+                    <p class="badge-subtitle">Système Informatique Logiciel 2e année</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll
+        window.addEventListener('scroll', function() {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const page = document.getElementById(`page-${pageId}`);
+            if (page) page.classList.add('active');
+            else document.getElementById('page-404').classList.add('active');
+
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll(`[onclick*="showPage('${pageId}')"]`).forEach(l => l.classList.add('active'));
+
+            document.getElementById('mobileMenu').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectPack(id, format, units, price) {
+            sessionStorage.setItem('selectedPack', JSON.stringify({ id, format, units, price }));
+            const packSelect = document.getElementById('pack-select');
+            if (packSelect) {
+                const val = `${format} - ${units} unités`;
+                for (let opt of packSelect.options) if (opt.value === val) opt.selected = true;
+            }
+        }
+
+        window.addEventListener('load', function() {
+            const stored = sessionStorage.getItem('selectedPack');
+            if (stored) {
+                try {
+                    const pack = JSON.parse(stored);
+                    const packSelect = document.getElementById('pack-select');
+                    if (packSelect) {
+                        const val = `${pack.format} - ${pack.units} unités`;
+                        for (let opt of packSelect.options) if (opt.value === val) opt.selected = true;
+                    }
+                } catch (e) {}
+            }
+        });
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const text = document.getElementById('btn-text');
+            const icon = document.getElementById('btn-icon');
+            const spin = document.getElementById('btn-spinner');
+            const form = document.getElementById('order-form');
+            const success = document.getElementById('order-success');
+
+            btn.disabled = true;
+            text.style.display = 'none';
+            icon.style.display = 'none';
+            spin.style.display = 'inline-block';
+
+            setTimeout(() => {
+                form.style.display = 'none';
+                success.style.display = 'block';
+                sessionStorage.removeItem('selectedPack');
+                setTimeout(() => {
+                    form.style.display = 'block';
+                    success.style.display = 'none';
+                    form.reset();
+                    btn.disabled = false;
+                    text.style.display = 'inline';
+                    icon.style.display = 'inline';
+                    spin.style.display = 'none';
+                }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
